@@ -1,25 +1,25 @@
 # lumen-calendar
 
-The calendar for **AspisOS**, a capability-based, no-ambient-authority operating
-system built on the from-scratch [Aegis](https://github.com/AspisOS/Aegis)
+The calendar for **LoricaOS**, a capability-based, no-ambient-authority operating
+system built on the from-scratch [Aegis](https://github.com/LoricaOS/Aegis)
 kernel.
 
 lumen-calendar is a month-view calendar with per-day notes. It is an external
-client of the [lumen](https://github.com/AspisOS/lumen) compositor, distributed
-as a [herald](https://github.com/AspisOS/AspisOS) package and installed as an
+client of the [lumen](https://github.com/LoricaOS/lumen) compositor, distributed
+as a [herald](https://github.com/LoricaOS/LoricaOS) package and installed as an
 `/apps` bundle. Its descriptor's display name is **Calendar**.
 
-## The AspisOS ecosystem
+## The LoricaOS ecosystem
 
-AspisOS is decomposed into independent repositories; lumen-calendar is one
+LoricaOS is decomposed into independent repositories; lumen-calendar is one
 graphical leaf of that tree:
 
 | Repo | Role |
 |------|------|
-| [`AspisOS/Aegis`](https://github.com/AspisOS/Aegis) | The kernel. Provides the capability model, the `AF_UNIX` socket to the compositor, and the filesystem where notes are stored. |
-| [`AspisOS/lumen`](https://github.com/AspisOS/lumen) | The compositor / display server. lumen-calendar connects to its socket for a window and input events. |
-| [`AspisOS/glyph`](https://github.com/AspisOS/glyph) | The GUI toolkit. Supplies the renderer, the theme, the timezone offset (`glyph_theme_tz_offset`) for the header clock, and the client side of lumen's window protocol (`lumen_client.h`). |
-| [`AspisOS/AspisOS`](https://github.com/AspisOS/AspisOS) | The OS: userland, rootfs, ISO/installer, and the herald package manager that installs this `.hpkg`. |
+| [`LoricaOS/Aegis`](https://github.com/LoricaOS/Aegis) | The kernel. Provides the capability model, the `AF_UNIX` socket to the compositor, and the filesystem where notes are stored. |
+| [`LoricaOS/lumen`](https://github.com/LoricaOS/lumen) | The compositor / display server. lumen-calendar connects to its socket for a window and input events. |
+| [`LoricaOS/glyph`](https://github.com/LoricaOS/glyph) | The GUI toolkit. Supplies the renderer, the theme, the timezone offset (`glyph_theme_tz_offset`) for the header clock, and the client side of lumen's window protocol (`lumen_client.h`). |
+| [`LoricaOS/LoricaOS`](https://github.com/LoricaOS/LoricaOS) | The OS: userland, rootfs, ISO/installer, and the herald package manager that installs this `.hpkg`. |
 
 ## What it does
 
@@ -42,7 +42,7 @@ Grounded in `src/main.c`:
 
 ## Capabilities
 
-AspisOS has no ambient authority: a process can do nothing except through
+LoricaOS has no ambient authority: a process can do nothing except through
 capabilities granted at exec time. lumen-calendar's policy
 (`pkg/etc/aegis/caps.d/calendar`) is the baseline desktop-app profile:
 
@@ -60,7 +60,7 @@ first-party and signature-trusted, installed verbatim by herald.
 
 ## Building
 
-lumen-calendar fetches a pinned [glyph](https://github.com/AspisOS/glyph)
+lumen-calendar fetches a pinned [glyph](https://github.com/LoricaOS/glyph)
 toolkit artifact (the GUI libraries it links) and builds against it, then packs
 a signed herald package.
 
@@ -101,7 +101,7 @@ GLYPH_VERSION   the pinned glyph toolkit version it builds against
 ## Dependencies
 
 `depends=lumen` — lumen-calendar is a Lumen client, so installing it pulls
-[lumen](https://github.com/AspisOS/lumen) (which in turn ships the desktop fonts
+[lumen](https://github.com/LoricaOS/lumen) (which in turn ships the desktop fonts
 every dependent inherits).
 
 ## Status
@@ -109,4 +109,4 @@ every dependent inherits).
 Early-stage and intentionally simple: a single-month view with one short note
 per day kept in a flat `$HOME/.calendar` file — no recurring events, reminders,
 multi-line entries, or time-of-day scheduling. It is a useful note-keeping
-calendar today and is expected to grow as AspisOS matures.
+calendar today and is expected to grow as LoricaOS matures.
